@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "PXL - Basic Security";
+}
+
+<div class="row">
+    <h3>Keys genereren</h3>
+    <div class="col-md-4">
+        Naam:<input type="text" name="txtNaam"/>
+
+        <p>
+            <ul>
+                <li>1 symmetrische key (DES of AES) </li>
+                <li>1 private en 1 public RSA key</li>
+                <ul>
+        </p>
+        <input type="button" value="Create" onclick="location.href='@Url.Action("Download", "Home")'" />
+    </div>
+</div>
+<div class="row">
+    <h3>Alice -> Bob </h3>
+    <div class="col-md-4">
+        <h4>1. Keys selecteren</h4>
+
+        <p><input type="file" name="files" multiple /></p>
+
+    </div>
+    <div class="col-md-4">
+        <h4>2. Bericht selecteren</h4>
+        <p><input type="file" name="file1" /></p>
+        <p><a class="btn btn-default" href="">Encrypteer &raquo;</a></p>
+    </div>
+
+</div>
+<div class="row">
+    <h3>Bob CHECK</h3>
+    <div class="col-md-4">
+        <h4>1. Keys selecteren</h4>
+
+        <p><input type="file" name="files" multiple /></p>
+   
+    </div>
+    <div class="col-md-4">
+        <h4>2. Bericht selecteren</h4>
+        <p><input type="file" name="files2" /></p>
+        <p><a class="btn btn-default" href="">Decrypt &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h4>3. Resultaat</h4>
+        
+        <p>
+            <ul>
+                <li>Boodschap</li>
+                <li>hash vergelijking</li>
+            </ul>
+        </p>
+        
+    </div>
+</div>
+
+<div>
+    <a href = "http://www.c-sharpcorner.com/article/implement-symmetric-and-asymmetric-cryptography-algorithms-with-c-sharp">link1</a>
+</div>
