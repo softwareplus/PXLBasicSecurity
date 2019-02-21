@@ -1,5 +1,5 @@
 ﻿@using BasicSecurity.Models
-@model BasicSecurity.Models.User
+@model IEnumerable<BasicSecurity.Models.User>
 
 @{
     ViewBag.Title = "PXL - Basic Security";
@@ -14,25 +14,31 @@
 
 
         Naam:<input type="text" id="txtNaam" />
-        <button id=myButton class="btn btn-default" >Registreer</button>
+        <button id=myButton class="btn btn-default">Registreer</button>
 
-        <script>
-     var url = '@Html.Raw(Url.Action("Download", "Home"))';
-            $("#myButton").click(function () {
-                if ($('#txtNaam').val() == '') {
-                    alert('Naam verplicht!');
-                    return;
-                }
+        <script type="text/javascript">
+            $(document).ready(function ()
+            {
+                var url = '@Html.Raw(Url.Action("Download", "Home"))';
+                $("#myButton").click(function ()
+                {
+                    if ($('#txtNaam').val() == '') {
+                        alert('Naam verplicht!');
+                        return;
+                    }
 
-         location.href = url + '?id=' + $("#txtNaam").val()
-     });
+                    location.href = url + '?id=' + $("#txtNaam").val()
+                });
+
+
+            });  
         </script>
 
 
     </div>
     <div class="col-md-4">
         AES Sleutel
-        <input type="button" class="btn btn-default"  value="Genereer" onclick="location.href='@Url.Action("Download", "Home")'" />
+        <input type="button" class="btn btn-default" value="Genereer" onclick="location.href='@Url.Action("Download", "Home")'" />
     </div>
 </div>
 <div class="row">
@@ -40,12 +46,12 @@
     <div class="col-md-4">
         <h4>1. Keys selecteren</h4>
 
-        <p><input type="file" name="files" class="btn btn-default"  multiple /></p>
+        <p><input type="file" name="files" class="btn btn-default" multiple /></p>
 
     </div>
     <div class="col-md-4">
         <h4>2. Bericht selecteren</h4>
-        <p><input type="file" name="file1" class="btn btn-default"  /></p>
+        <p><input type="file" name="file1" class="btn btn-default" /></p>
     </div>
     <div class="col-md-4">
         <h4>3. Versturen</h4>
@@ -58,12 +64,12 @@
     <div class="col-md-4">
         <h4>1. Keys selecteren</h4>
 
-        <p><input type="file" class="btn btn-default"  name="files" multiple /></p>
+        <p><input type="file" class="btn btn-default" name="files" multiple /></p>
 
     </div>
     <div class="col-md-4">
         <h4>2. Bericht selecteren</h4>
-        <p><input type="file" name="files2" class="btn btn-default"  /></p>
+        <p><input type="file" name="files2" class="btn btn-default" /></p>
     </div>
     <div class="col-md-4">
         <h4>3. Ontvang</h4>
@@ -84,6 +90,33 @@
 
     </div>
 </div>
+
+<br /><br />
+      <table>
+          @{int i = 0; }
+          @foreach (var item in Model)
+              {
+
+                  i++;
+                  if (i == 1)
+                  {
+                      <tr>
+                          <td>ID</td>
+                          <td>NAAM</td>
+                          <td>PUBLIC KEY</td>
+                      </tr>
+                  }
+                  <tr>
+                      <td widh="5%">@item.Id</td>
+                      <td width="30%">@item.Name</td>
+                      <td width="50%">@item.publicKey</td>
+                  </tr>
+              }
+         
+
+
+          </table>
+
 
 
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BasicSecurity.Models;
 using System.IO;
 using Ionic.Zip;
+using System.Xml;
 
 namespace BasicSecurity.Controllers
 {
@@ -13,7 +14,24 @@ namespace BasicSecurity.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            
+            List<BasicSecurity.Models.User> ListOvz = new List<BasicSecurity.Models.User>();
+
+
+            XmlDocument xml = new XmlDocument();
+            xml.Load(Server.MapPath("~/App_Data/Database.xml"));
+
+            XmlNodeList list = xml.SelectNodes("/Users/User");
+            foreach (XmlNode xn in list)
+            {
+                Models.User u = new User();
+                u.Id = Convert.ToInt32(xn["Id"].InnerText);
+                u.Name = xn["Name"].InnerText;
+                u.publicKey = xn["PublicKey"].InnerText;
+                ListOvz.Add(u);
+
+            }
+            return View(ListOvz);
         }
 
 
