@@ -18,21 +18,17 @@ namespace BasicSecurity.Controllers
 
 
 
-        public ActionResult Download(string name="")
+        public ActionResult Download(string id)
         {
+
             Response.Clear();
             Response.BufferOutput = false;
             string archiveName = String.Format("archive-{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"));
             Response.ContentType = "application/zip";
             Response.AddHeader("content-disposition", "attachment; filename=" + archiveName);
 
-            //voorlopig
-            if (name.Equals(""))
-            {
-                name = "Alice";
-            }
 
-            KeyGenerator keysForAlice = new KeyGenerator(new Models.User(name));
+            KeyGenerator keygen = new KeyGenerator(new Models.User(id));
 
             var outputStream = new MemoryStream();
 
@@ -40,9 +36,9 @@ namespace BasicSecurity.Controllers
             using (var zip = new ZipFile())
             {
                 List<String> filesToInclude = new List<string>();
-                filesToInclude.Add(keysForAlice.PrivateKey().fullIdentity());
-                filesToInclude.Add(keysForAlice.PublicKey().fullIdentity());
-                filesToInclude.Add(keysForAlice.AESKey().fullIdentity());
+                filesToInclude.Add(keygen.PrivateKey().fullIdentity());
+                filesToInclude.Add(keygen.PublicKey().fullIdentity());
+                filesToInclude.Add(keygen.AESKey().fullIdentity());
 
                 zip.AddFiles(filesToInclude, "files");
                 zip.Save(Response.OutputStream);
@@ -70,6 +66,8 @@ namespace BasicSecurity.Controllers
             return RedirectToAction("UploadDocument");
         }
 
+
+    
 
     }
 }

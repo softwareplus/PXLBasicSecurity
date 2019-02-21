@@ -16,6 +16,13 @@ namespace BasicSecurity.Models
             publicKey = new Key(user,Key.KeyType.IsPublic);
             privateKey = new Key(user,Key.KeyType.IsPrivate);
             aesKey = new Key(user, Key.KeyType.IsAES);
+
+            //dit overloaden
+            user.publicKey = publicKey.Content();
+            BasicSecurity.Helpers.UsersDAL objUsersDAL = new Helpers.UsersDAL();
+            objUsersDAL.Create(user);
+
+
         }
 
         public Key PublicKey()
