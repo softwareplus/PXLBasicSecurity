@@ -8,13 +8,15 @@
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
+
 <div class="row">
-    <h3>Keys genereren</h3>
+
+    <h3>Registratie</h3>
     <div class="col-md-4">
-
-
         Naam:<input type="text" id="txtNaam" />
-        <button id=myButton class="btn btn-default">Registreer</button>
+        <button id=myButton class="btn btn-default">Registreer &raquo;</button>
+
+
 
         <script type="text/javascript">
             $(document).ready(function ()
@@ -28,94 +30,139 @@
                     }
 
                     location.href = url + '?id=' + $("#txtNaam").val()
+                    $('input[name="refreshPagina"]').val('1');
                 });
 
+                var urlRefresh = '@Html.Raw(Url.Action("Index", "Home"))';
+                $("#myButtonRefresh").click(function ()
+                {
+                    location.href = urlRefresh
+                });
 
-            });  
+            });
+
+
         </script>
 
 
     </div>
     <div class="col-md-4">
         AES Sleutel
-        <input type="button" class="btn btn-default" value="Genereer" onclick="location.href='@Url.Action("Download", "Home")'" />
+        <input type="button" class="btn btn-default" value="Genereer &raquo;" onclick="location.href='@Url.Action("Download", "Home")'" />
     </div>
+
+    <div class="col-md-4">
+        <button id=myButtonRefresh class="btn btn-default">Herlaad pagina &raquo;</button>
+    </div>
+
 </div>
+
+<hr>
+@using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <h3>Communicatie</h3>
+        <div class="col-md-4">
+            <h4>1. Zender/Ontvanger</h4>
+            <table>
+                <tr>
+                    <td width="10%">VAN</td>
+                    <td width="10%"></td>
+                    <td>
+                        @Html.DropDownList("ddlFrom", Model.Select(item => new SelectListItem
+                   {
+                       Value = item.Id.ToString(),
+                       Text = item.Name.ToString()
+                   }))
+                    </td>
+                </tr>
+                <tr>
+                    <td width="10%">NAAR</td>
+                    <td width="10%"></td>
+                    <td>
+                        @Html.DropDownList("ddlTo", Model.Select(item => new SelectListItem
+                   {
+                       Value = item.Id.ToString(),
+                       Text = item.Name.ToString()
+                   }))
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        TYPE
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DropDownList("typeEncryptie", new List<SelectListItem>() { new SelectListItem { Text = "Encrypt", Value = "1" }, new SelectListItem { Text = "Decrypt", Value = "2" } })
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+        <div class="col-md-4">
+            <h4>2. Bestanden selecteren</h4>
+
+            <form action="" method="post" enctype="multipart/form-data">
+
+
+                <p>
+                    <input type="file" name="files" class="btn btn-default" multiple />
+                    <input type="submit" value="Encrypt/Decrypt" class="btn btn-default" />
+                </p>
+            </form>
+            
+        </div>
+
+    </div>
+}
+
+<hr>
 <div class="row">
-    <h3>Alice -> Bob </h3>
-    <div class="col-md-4">
-        <h4>1. Keys selecteren</h4>
+        <h3>Resultaat</h3>
+        <div class="col-md-4">
 
-        <p><input type="file" name="files" class="btn btn-default" multiple /></p>
+            <p>
+                <ul>
+                    <li>Boodschap</li>
+                    <li>hash vergelijking</li>
+                </ul>
+            </p>
 
-    </div>
-    <div class="col-md-4">
-        <h4>2. Bericht selecteren</h4>
-        <p><input type="file" name="file1" class="btn btn-default" /></p>
-    </div>
-    <div class="col-md-4">
-        <h4>3. Versturen</h4>
-        <p><a class="btn btn-default" href="">Encrypteer &raquo;</a></p>
-    </div>
-
+        </div>
 </div>
+
+<hr>
 <div class="row">
-    <h3>Bob CHECK</h3>
-    <div class="col-md-4">
-        <h4>1. Keys selecteren</h4>
+        <h3>Publieke sleutels</h3>
+        <div class="col-md-4">
+            <table>
+                @{int i = 0; }
+                @foreach (var item in Model)
+                {
 
-        <p><input type="file" class="btn btn-default" name="files" multiple /></p>
-
-    </div>
-    <div class="col-md-4">
-        <h4>2. Bericht selecteren</h4>
-        <p><input type="file" name="files2" class="btn btn-default" /></p>
-    </div>
-    <div class="col-md-4">
-        <h4>3. Ontvang</h4>
-        <p><a class="btn btn-default" href="">Decrypt &raquo;</a></p>
-    </div>
-
+                    i++;
+                    if (i == 1)
+                    {
+                        <tr>
+                            <td>ID</td>
+                            <td>NAAM</td>
+                            <td>PUBLIC KEY</td>
+                        </tr>
+                    }
+                    if (i >= 2)
+                    {
+                        <tr>
+                            <td widh="5%">@item.Id</td>
+                            <td width="30%">@item.Name</td>
+                            <td width="50%">@item.publicKey</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
 </div>
-<div class="row">
-    <h3>Resultaat</h3>
-    <div class="col-md-4">
-
-        <p>
-            <ul>
-                <li>Boodschap</li>
-                <li>hash vergelijking</li>
-            </ul>
-        </p>
-
-    </div>
-</div>
-
-<br /><br />
-      <table>
-          @{int i = 0; }
-          @foreach (var item in Model)
-              {
-
-                  i++;
-                  if (i == 1)
-                  {
-                      <tr>
-                          <td>ID</td>
-                          <td>NAAM</td>
-                          <td>PUBLIC KEY</td>
-                      </tr>
-                  }
-                  <tr>
-                      <td widh="5%">@item.Id</td>
-                      <td width="30%">@item.Name</td>
-                      <td width="50%">@item.publicKey</td>
-                  </tr>
-              }
-         
-
-
-          </table>
 
 
 

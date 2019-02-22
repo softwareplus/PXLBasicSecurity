@@ -14,14 +14,18 @@ namespace BasicSecurity.Controllers
     {
         public ActionResult Index()
         {
-            
             List<BasicSecurity.Models.User> ListOvz = new List<BasicSecurity.Models.User>();
-
 
             XmlDocument xml = new XmlDocument();
             xml.Load(Server.MapPath("~/App_Data/Database.xml"));
 
             XmlNodeList list = xml.SelectNodes("/Users/User");
+        
+            Models.User dummy = new User();
+            dummy.Id = 0;
+            dummy.Name = "-Selecteer-";
+            ListOvz.Add(dummy);
+
             foreach (XmlNode xn in list)
             {
                 Models.User u = new User();
@@ -61,27 +65,28 @@ namespace BasicSecurity.Controllers
                 zip.AddFiles(filesToInclude, "files");
                 zip.Save(Response.OutputStream);
             }
-
+        
             outputStream.Position = 0;
             return File(outputStream, "application/zip", "keys.zip");
         }
 
         [HttpPost]
-        public ActionResult Upload()
+        public ActionResult Upload(IEnumerable<HttpPostedFileBase> files, FormCollection collection)
         {
-            if (Request.Files.Count > 0)
-            {
-                var file = Request.Files[0];
+            int senderID = Convert.ToInt32(collection.Get("ddlFrom"));
+            int receiverID = Convert.ToInt32(collection.Get("ddlTo"));
+            int typeEncryptie = Convert.ToInt32(collection.Get("typeEncryptie"));
 
-                if (file != null && file.ContentLength > 0)
+            foreach (var file in files)
+            {
+                if (file.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/BLABLABLA/"), fileName);
+                    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
                     file.SaveAs(path);
                 }
             }
-
-            return RedirectToAction("UploadDocument");
+            return RedirectToAction("Index");
         }
 
 

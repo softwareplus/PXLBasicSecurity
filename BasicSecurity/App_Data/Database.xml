@@ -2,17 +2,12 @@
 <Users>
   <User>
     <Id>1</Id>
-    <Name>Rocco</Name>
+    <Name>Alice</Name>
     <PublicKey>KEY : IsPublic blablabla</PublicKey>
   </User>
   <User>
     <Id>2</Id>
-    <Name>xxx</Name>
-    <PublicKey>KEY : IsPublic blablabla</PublicKey>
-  </User>
-  <User>
-    <Id>3</Id>
-    <Name>xyz</Name>
+    <Name>Bob</Name>
     <PublicKey>KEY : IsPublic blablabla</PublicKey>
   </User>
 </Users>
