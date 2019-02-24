@@ -9,6 +9,7 @@ using Ionic.Zip;
 using System.Xml;
 using System.Security.Cryptography;
 using BasicSecurity.Models.Encryption;
+using BasicSecurity.Helpers;
 
 namespace BasicSecurity.Controllers
 {
@@ -71,8 +72,7 @@ namespace BasicSecurity.Controllers
             {
                 List<String> filesToInclude = new List<string>();
                 filesToInclude.Add(keygen.PrivateKey().fullIdentity());
-                filesToInclude.Add(keygen.PublicKey().fullIdentity());
-                //filesToInclude.Add(keygen.AESKey().fullIdentity());
+                //filesToInclude.Add(keygen.PublicKey().fullIdentity());
 
                 zip.AddFiles(filesToInclude, "files");
                 zip.Save(Response.OutputStream);
@@ -91,8 +91,6 @@ namespace BasicSecurity.Controllers
             string appDataFolder = Server.MapPath("~/App_Data/Downloads/");
 
             string privateKey = "";
-            string publicKey = "";
-
 
             foreach (var file in files)
             {
@@ -103,13 +101,9 @@ namespace BasicSecurity.Controllers
                     BinaryReader b = new BinaryReader(file.InputStream);
                     byte[] binData = b.ReadBytes(file.ContentLength);
 
-                    if (fileName.Contains("Public"))
+                    if (fileName.Contains("Private"))
                     {
                         privateKey = System.Text.Encoding.UTF8.GetString(binData);
-                    }
-                    else if (fileName.Contains("Private"))
-                    {
-                        publicKey = System.Text.Encoding.UTF8.GetString(binData);
                     }
                     else
                     {
@@ -139,7 +133,6 @@ namespace BasicSecurity.Controllers
             sender = ListOvz.Find(x => x.Id == senderID);
             receiver = ListOvz.Find(x => x.Id == receiverID);
 
-
             senderAndReceiver = new UserPair(sender, receiver);
   
             // Create Aes key using UserPair
@@ -151,8 +144,7 @@ namespace BasicSecurity.Controllers
 
 
             RSACryptoServiceProvider publicRsa = new RSACryptoServiceProvider();
-            publicRsa.FromXmlString(publicKey);
-
+            publicRsa.FromXmlString(CommonMethods.ReturnPublicKey(ListOvz,receiverID));
 
 
             //// MESSAGE ENCRYPTION
@@ -220,9 +212,10 @@ namespace BasicSecurity.Controllers
         public ActionResult Decrypt(IEnumerable<HttpPostedFileBase> files, FormCollection collection)
         {
             List<BasicSecurity.Models.User> ListOvz = new List<BasicSecurity.Models.User>();
+            int receiverID = Convert.ToInt32(collection.Get("ddlTo"));
+            Models.User u = new User();
 
             string privateKey = "";
-            string publicKey = "";
 
             byte[] file_1 = new byte[0];
             byte[] file_2_IV = new byte[0];
@@ -230,9 +223,24 @@ namespace BasicSecurity.Controllers
             byte[] file_3 = new byte[0];
 
 
-            Models.User u = new User();
-            u.Id = 0;
-            u.Name = "-Selecteer-";
+            XmlDocument xml = new XmlDocument();
+            xml.Load(Server.MapPath("~/App_Data/Database.xml"));
+
+            XmlNodeList list = xml.SelectNodes("/Users/User");
+            foreach (XmlNode xn in list)
+            {
+                u = new User();
+                u.Id = Convert.ToInt32(xn["Id"].InnerText);
+                u.Name = xn["Name"].InnerText;
+                u.publicKey = xn["PublicKey"].InnerText;
+                ListOvz.Add(u);
+
+            }
+
+
+            //Models.User u = new User();
+            //u.Id = 0;
+            //u.Name = "-Selecteer-";
 
 
             try
@@ -247,13 +255,9 @@ namespace BasicSecurity.Controllers
                         BinaryReader b = new BinaryReader(file.InputStream);
                         byte[] binData = b.ReadBytes(file.ContentLength);
 
-                        if (fileName.Contains("Public"))
+                        if (fileName.Contains("Private"))
                         {
                             privateKey = System.Text.Encoding.UTF8.GetString(binData);
-                        }
-                        else if (fileName.Contains("Private"))
-                        {
-                            publicKey = System.Text.Encoding.UTF8.GetString(binData);
                         }
                         else if (fileName.Contains("FILE_1"))
                         {
@@ -286,7 +290,7 @@ namespace BasicSecurity.Controllers
                 privateRsa.FromXmlString(privateKey);
 
                 RSACryptoServiceProvider publicRsa = new RSACryptoServiceProvider();
-                publicRsa.FromXmlString(publicKey);
+                publicRsa.FromXmlString(CommonMethods.ReturnPublicKey(ListOvz, receiverID));
 
                 EncryptedAes EncryptedAesKey = new EncryptedAes(file_2_IV, file_2_KEY);
                 DecryptedAesKey = HybridEncryption.DecryptAesKeyWithPrivateKeyReceiver(EncryptedAesKey, privateRsa);

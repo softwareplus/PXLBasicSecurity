@@ -62,11 +62,11 @@ namespace BasicSecurity.Models
             }
             if (keyType == KeyType.IsPublic)
             {
-                content = _rsa.ToXmlString(true);
+                content = _rsa.ToXmlString(false);
             }
             if (keyType == KeyType.IsPrivate)
             {
-                content = _rsa.ToXmlString(false);
+                content = _rsa.ToXmlString(true);
             }
 
             File.WriteAllText(location + "\\" + fileName, content);

@@ -153,7 +153,7 @@
 <hr>
 <div class="row">
     <h3>Publieke sleutels</h3>
-    <div class="col-md-4">
+    <div>
         <table>
             @{int i = 0; }
             @foreach (var item in Model)
@@ -163,17 +163,17 @@
                 if (i == 1)
                 {
                     <tr>
-                        <td>ID</td>
-                        <td>NAAM</td>
-                        <td>PUBLIC KEY</td>
+                        <td width="5%" style="border-bottom:1pt solid black;">ID</td>
+                        <td width="15%" style="border-bottom:1pt solid black;">NAAM</td>
+                        <td width="75%" style="border-bottom:1pt solid black;">PUBLIC KEY</td>
                     </tr>
                 }
                 if (i >= 2)
                 {
                     <tr>
                         <td widh="5%">@item.Id</td>
-                        <td width="30%">@item.Name</td>
-                        <td width="50%">@item.publicKey</td>
+                        <td width="15%">@item.Name</td>
+                        <td width="75%">@item.publicKey.Substring(0, 100)...</td>
                     </tr>
                 }
             }

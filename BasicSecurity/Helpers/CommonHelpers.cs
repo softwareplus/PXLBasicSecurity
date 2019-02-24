@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml;
+using System.Configuration;
+using BasicSecurity.Models;
 
 namespace BasicSecurity.Helpers
 {
@@ -28,5 +30,14 @@ namespace BasicSecurity.Helpers
             }
             return (intMaxValue + 1);
         }
+
+        public static string ReturnPublicKey(List<User> ListOvz, int UserId)
+        {
+            string pkey = "NOTFOUND";
+            User u = ListOvz.Find(x => x.Id == UserId);
+            pkey = u.publicKey;
+            return pkey;
+        }
+
     }
 }
