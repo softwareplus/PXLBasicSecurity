@@ -10,4 +10,19 @@
     <Name>Alice</Name>
     <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;sWsCeMO/JJmTKJm8xBrjfFpzYcyLjzFW3m7NHNDstwQobxbb2mB/vTSYVRNGf+cAKqsSdUwt2vrPcGFL2fu9C6kOjlXka1vDPeUjb0c1y3kMShGsmwe2mlL/4It4VRQ8TmMfLQS8WMzEnB9s7Uz7Z7bRlODKjvsUXnGBwe02v6k=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</PublicKey>
   </User>
+  <User>
+    <Id>3</Id>
+    <Name>Bob</Name>
+    <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;s2Fdy2L9PH11kgMfsPgqMlNzbESA3HwUP960BmJJO2gRtYy/UilHXJEnCeSwiTvmHrvNDpSamheYazcdiYoz3TUBpJey6QdmvwGPAGDvOD+obauleR1kPdcSS66lH69L/pXNfW6bJOkqtGebK9jBYQjXOApZlBeawKrUW+DmOjk=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</PublicKey>
+  </User>
+  <User>
+    <Id>4</Id>
+    <Name>testoutputstream</Name>
+    <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;zWejeDEr0hwQDk+dBlKqAYJc65gM16sJTgU2nJvhl86wklPQCeHv1xDASuWdIbw7C9EY/YxiLv8YM0q/TQhteCkUqVAcL12DiB8OuX+0sK6oV77Ier+bFeeHXrpIFNUtncssAltioxuy+e47/X4llPa1KgXEeOPMugtYzpsz5DE=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</PublicKey>
+  </User>
+  <User>
+    <Id>5</Id>
+    <Name>sdfdsf</Name>
+    <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;yEiAzEwFzNomApZwuJmIEGSnk5CgIlj8QFn+Z22t4CIGoRLPTxhNS9XwCG+yRuOyqQ37zhvvbWAFeMSfCucGS2GPWmc5owEz02p++63AMyCzqNro98gyFJUD0k8ZYTZkFVfyYxPK+R8DpZVCDTTY9Uv30TUDwuHaIc7AOGUqKc0=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</PublicKey>
+  </User>
 </Users>

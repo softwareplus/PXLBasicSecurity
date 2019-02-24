@@ -56,30 +56,21 @@ namespace BasicSecurity.Controllers
 
         public ActionResult Download(string id)
         {
-
-            Response.Clear();
-            Response.BufferOutput = false;
-            string archiveName = String.Format("archive-{0}.zip", DateTime.Now.ToString("yyyy-MMM-dd-HHmmss"));
-            Response.ContentType = "application/zip";
-            Response.AddHeader("content-disposition", "attachment; filename=" + archiveName);
-
             KeyGenerator keygen = new KeyGenerator(new Models.User(id));
+            string filename = Path.GetFileName(keygen.PrivateKey().fullIdentity());
+            string filepath = keygen.PrivateKey().fullIdentity();
+            byte[] filedata = System.IO.File.ReadAllBytes(filepath);
+            string contentType = MimeMapping.GetMimeMapping(filepath);
 
-            var outputStream = new MemoryStream();
-
-            //nuget dotnetzip gedaan
-            using (var zip = new ZipFile())
+            var cd = new System.Net.Mime.ContentDisposition
             {
-                List<String> filesToInclude = new List<string>();
-                filesToInclude.Add(keygen.PrivateKey().fullIdentity());
-                //filesToInclude.Add(keygen.PublicKey().fullIdentity());
+                FileName = filename,
+                Inline = true,
+            };
 
-                zip.AddFiles(filesToInclude, "files");
-                zip.Save(Response.OutputStream);
-            }
-        
-            outputStream.Position = 0;
-            return File(outputStream, "application/zip", "keys.zip");
+            Response.AppendHeader("Content-Disposition", cd.ToString());
+
+            return File(filedata, contentType);
         }
 
         [HttpPost]
