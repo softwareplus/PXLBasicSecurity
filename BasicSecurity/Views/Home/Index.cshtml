@@ -39,6 +39,11 @@
                     location.href = urlRefresh
                 });
 
+                $(document).on('change', "#ddlFrom", function () {
+                    
+                    $('input[name="senderID"]').val($(this).val());
+                });
+
             });
 
 
@@ -66,11 +71,15 @@
                     <td width="10%">VAN</td>
                     <td width="10%"></td>
                     <td>
-                        @Html.DropDownList("ddlFrom", Model.Select(item => new SelectListItem
-                   {
-                       Value = item.Id.ToString(),
-                       Text = item.Name.ToString()
-                   }))
+                        @Html.DropDownList("ddlFrom",
+                        Model.Select
+                        (item =>
+                            new SelectListItem
+                            {
+                                Value = item.Id.ToString(),
+                                Text = item.Name.ToString()
+                            }
+                          ))
                     </td>
                 </tr>
                 <tr>
@@ -114,11 +123,12 @@
             <h4>2. Bestanden selecteren</h4>
 
             <form action="" method="post" enctype="multipart/form-data">
-
+               
 
                 <p>
                     <input type="file" name="files" class="btn btn-default" multiple />
                     <input type="submit" value="Decrypt" class="btn btn-default" />
+                    <input type="text" value="" name="senderID" class"senderID" hidden/>
                 </p>
             </form>
 

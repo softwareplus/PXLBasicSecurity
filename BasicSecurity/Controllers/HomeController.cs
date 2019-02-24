@@ -203,7 +203,7 @@ namespace BasicSecurity.Controllers
         public ActionResult Decrypt(IEnumerable<HttpPostedFileBase> files, FormCollection collection)
         {
             List<BasicSecurity.Models.User> ListOvz = new List<BasicSecurity.Models.User>();
-            int senderID = Convert.ToInt32(collection.Get("ddlFrom"));
+            int senderID = Convert.ToInt32(collection.Get("senderID"));
             Models.User u = new User();
 
             string privateKey = "";
@@ -227,12 +227,6 @@ namespace BasicSecurity.Controllers
                 ListOvz.Add(u);
 
             }
-
-
-            //Models.User u = new User();
-            //u.Id = 0;
-            //u.Name = "-Selecteer-";
-
 
             try
             {
