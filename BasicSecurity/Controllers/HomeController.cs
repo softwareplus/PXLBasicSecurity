@@ -212,7 +212,7 @@ namespace BasicSecurity.Controllers
         public ActionResult Decrypt(IEnumerable<HttpPostedFileBase> files, FormCollection collection)
         {
             List<BasicSecurity.Models.User> ListOvz = new List<BasicSecurity.Models.User>();
-            int receiverID = Convert.ToInt32(collection.Get("ddlTo"));
+            int senderID = Convert.ToInt32(collection.Get("ddlFrom"));
             Models.User u = new User();
 
             string privateKey = "";
@@ -290,7 +290,7 @@ namespace BasicSecurity.Controllers
                 privateRsa.FromXmlString(privateKey);
 
                 RSACryptoServiceProvider publicRsa = new RSACryptoServiceProvider();
-                publicRsa.FromXmlString(CommonMethods.ReturnPublicKey(ListOvz, receiverID));
+                publicRsa.FromXmlString(CommonMethods.ReturnPublicKey(ListOvz, senderID));
 
                 EncryptedAes EncryptedAesKey = new EncryptedAes(file_2_IV, file_2_KEY);
                 DecryptedAesKey = HybridEncryption.DecryptAesKeyWithPrivateKeyReceiver(EncryptedAesKey, privateRsa);
