@@ -8,25 +8,16 @@
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-
-<div class="row">
-
-    <h3>Registratie</h3>
-    <div class="col-md-4">
-        Naam:<input type="text" id="txtNaam" />
-        <button id=myButton class="btn btn-default">Registreer &raquo;</button>
-
-
-
-        <script type="text/javascript">
+<script type="text/javascript">
             $(document).ready(function ()
             {
                 var url = '@Html.Raw(Url.Action("Download", "Home"))';
                 $("#myButton").click(function ()
                 {
-                    if ($('#txtNaam').val() == '') {
-                        alert('Naam verplicht!');
-                        return;
+                    if (($('#txtNaam').val() == ''))  {
+                        //alert('Naam verplicht!');
+                        $("#frERROR").text("Naam is verplicht!");
+                        return false;
                     }
 
                     location.href = url + '?id=' + $("#txtNaam").val()
@@ -40,157 +31,201 @@
                 });
 
                 $(document).on('change', "#ddlFrom", function () {
-                    
+
                     $('input[name="senderID"]').val($(this).val());
                 });
 
             });
 
 
-        </script>
+</script>
 
 
-    </div>
+<div id="templatemo_container">
 
-    <div class="col-md-4">
-        <button id=myButtonRefresh class="btn btn-default">Herlaad pagina &raquo;</button>
-    </div>
 
-</div>
+    <div id="templatemo_header">
+        <div id="templatemo_logo">
+            <img src="../images/logo.gif" alt="Logo" />
+            <div id="templatemo_sitetitle">
+                PXL
 
-<hr>
-<div class="row">
-    @using (Html.BeginForm("Encrypt", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-
-        <h3>Encrypt/Decrypt</h3>
-        <div class="col-md-4">
-            <h4>1. Zender/Ontvanger</h4>
-            <table>
-                <tr>
-                    <td width="10%">VAN</td>
-                    <td width="10%"></td>
-                    <td>
-                        @Html.DropDownList("ddlFrom",
-                        Model.Select
-                        (item =>
-                            new SelectListItem
-                            {
-                                Value = item.Id.ToString(),
-                                Text = item.Name.ToString()
-                            }
-                          ))
-                    </td>
-                </tr>
-                <tr>
-                    <td width="10%">NAAR</td>
-                    <td width="10%"></td>
-                    <td>
-                        @Html.DropDownList("ddlTo", Model.Select(item => new SelectListItem
-                   {
-                       Value = item.Id.ToString(),
-                       Text = item.Name.ToString()
-                   }))
-                    </td>
-                </tr>
-            </table>
+            </div>
 
         </div>
 
+    </div>
 
-        <div class="col-md-4">
-            <h4>2. Bestanden selecteren</h4>
+    <div id="templatemo_menu">
+        <ul>
+            <li><a href="" class="current"></a></li>
 
-            <form action="" method="post" enctype="multipart/form-data">
+        </ul>
+    </div>
 
 
-                <p>
-                    <input type="file" name="files" class="btn btn-default" multiple />
-                    <input type="submit" value="Encrypt" class="btn btn-default" />
-                </p>
-            </form>
+
+    <div id="templatemo_banner">
+        <h1>Basic Security Demo</h1>
+
+    </div>
+    <button id=myButtonRefresh class="btn btn-default" style="float: right; margin-right:40px; margin-bottom:10px; margin-top:-10px;">Refresh</button>
+
+    <div id="templatemo_services">
+
+        <div class="service_box">
+            <center>
+                <img src="../images/people.png" alt="Registratie" />
+                <h2>Registratie</h2>
+                Gebruikersnaam:<input type="text" id="txtNaam" />
+
+
+
+                <div style="position: absolute;bottom: 0;width: 85%;height: 50px;">
+
+                    <button id=myButton class="btn btn-default">Registreer</button>
+                </div>
+
+
+
+            </center>
 
         </div>
 
+        <div class="service_box">
+            @using (Html.BeginForm("Encrypt", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
 
-    }
+            <center>
+                <img src="../images/encrypt.png" alt="Encrypt" />
 
+                <h2>Encryptie</h2>
+                Selecteer Zender en Ontvanger
 
-    @using (Html.BeginForm("Decrypt", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
+                @Html.DropDownList("ddlFrom",
+    Model.Select
+    (item =>
+      new SelectListItem
+      {
+          Value = item.Id.ToString(),
+          Text = item.Name.ToString()
+      }
+    ))
+                @Html.DropDownList("ddlTo", Model.Select(item => new SelectListItem
+           {
+               Value = item.Id.ToString(),
+               Text = item.Name.ToString()
+           }))
 
-        <div class="col-md-4">
-            <h4>2. Bestanden selecteren</h4>
-
-            <form action="" method="post" enctype="multipart/form-data">
                
+                <form action="" method="post" enctype="multipart/form-data">
+                    
+                    <div style="position: absolute;bottom: 15px;width: 85%;height: 50px;">
+                        <input type="file" name="files" multiple />
+                        <input type="submit" value="Encrypt" class="btn btn-default" />
+                    </div>
+                </form>
+          
 
-                <p>
-                    <input type="file" name="files" class="btn btn-default" multiple />
-                    <input type="submit" value="Decrypt" class="btn btn-default" />
-                    <input type="text" value="" name="senderID" class"senderID" hidden/>
-                </p>
-            </form>
+            </center>
 
+
+            }
+        </div>
+
+        <div class="service_box">
+
+            @using (Html.BeginForm("Decrypt", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <center>
+                <img src="../images/decrypt.png" alt="decrypt" />
+
+                <h2>Decryptie</h2>
+
+                
+                <form action="" method="post" enctype="multipart/form-data">
+
+                    
+                    <input type="text" value="" name="senderID" class"senderID" hidden />
+
+                    <div style="position: absolute;bottom: 15px;width: 85%;height: 50px;">
+                        <input type="file" name="files" multiple />
+                        <input type="submit" value="Decrypt" class="btn btn-default" />
+                    </div>
+
+                </form>
+                  
+            </center>
+
+            }
         </div>
 
 
-    }
-
-</div>
-
-<hr>
-<div class="row">
-    <h3>Resultaat</h3>
-    <div class="col-md-4">
-
-        <p>
-            <ul>
+        <div class="service_box">
+            <center>
+                <img src="../images/result.png" alt="Strategic Planing Icon" />
+                <h2>Resultaat</h2>
                 @foreach (var item in Model)
                 {
                     if (!String.IsNullOrEmpty(item.communicationResult))
                     {
-                        <li>@item.communicationResult</li>
-                        <li>@item.communicationMessage</li>
+                        <h4>@item.communicationResult</h4>
+                        <h4>@item.communicationMessage</h4>
                     }
                 }
-            </ul>
-        </p>
+                <h2><label id="frERROR" style="color:red;"></label></h2>
+
+            </center>
+        </div>
+    </div>
+
+
+    <div id="templatemo_newssection">
+        <h1>Gebruikers</h1>
+        <div class="newsbox">
+            <table>
+                @{int i = 0; }
+                @foreach (var item in Model)
+                {
+
+                    i++;
+                    if (i == 1)
+                    {
+                        <thead>
+                            <tr>
+                                <td width="5%">ID</td>
+                                <td width="15%">NAAM</td>
+                                <td width="75%">PUBLIC KEY</td>
+                            </tr>
+                        </thead>
+                    }
+                    if (i >= 2)
+                    {
+
+                        
+                        <tr>
+                            <td widh="5%">@item.Id</td>
+                            <td width="15%">@item.Name</td>
+                            <td width="75%">@item.publicKey.Substring(0, 150)...</td>
+                        </tr>
+
+                    }
+                }
+         
+            </table>
+        </div>
 
     </div>
-</div>
 
-<hr>
-<div class="row">
-    <h3>Publieke sleutels</h3>
-    <div>
-        <table>
-            @{int i = 0; }
-            @foreach (var item in Model)
-            {
 
-                i++;
-                if (i == 1)
-                {
-                    <tr>
-                        <td width="5%" style="border-bottom:1pt solid black;">ID</td>
-                        <td width="15%" style="border-bottom:1pt solid black;">NAAM</td>
-                        <td width="75%" style="border-bottom:1pt solid black;">PUBLIC KEY</td>
-                    </tr>
-                }
-                if (i >= 2)
-                {
-                    <tr>
-                        <td widh="5%">@item.Id</td>
-                        <td width="15%">@item.Name</td>
-                        <td width="75%">@item.publicKey.Substring(0, 100)...</td>
-                    </tr>
-                }
-            }
-        </table>
+    <div id="templatemo_footer">
+
+        Copyright © 2019 <a href="#"><strong>PXL - 2TIWA</strong></a>
+        <!-- Credit: www.templatemo.com -->
     </div>
+
+
+
 </div>
-
-
 
 

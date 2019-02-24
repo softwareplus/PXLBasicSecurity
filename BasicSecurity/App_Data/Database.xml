@@ -1,3 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Users>
+  <User>
+    <Id>1</Id>
+    <Name>Alice</Name>
+    <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;vKoAKuPN4H1N2Ln9EgVUG9i4e6hGs8nA29JwNuHiWr1Y3YuRon8Alfwa4azvxi9w5hf8f/v4mP2WTodfFhynldZDFX2WZoCRsmcHkHCEmymhkSgBdjAIYSR/JIhAhy0dKcjPO1Xohlj+/hnL2gQ4QNIX5gde2VahQPRdAeCqPgE=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</PublicKey>
+  </User>
+  <User>
+    <Id>2</Id>
+    <Name>Bob</Name>
+    <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;sY32g4OgS27iWowI69bJRi3sDuqoTwoSs9v7jUYMNDmc0I0dqHE7pX+CFFuGYYgfLkKeAIZRWmDwHx0e2vIfLlNdfV1WcE0ZxzPvl6Q0W1Itb/x6iznWds1BB9bMBAJEgCdXoDXY7hxnC3QRp9oZPQztJthNhdmbg0XZtcnMvQE=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</PublicKey>
+  </User>
+  <User>
+    <Id>3</Id>
+    <Name>Hacker</Name>
+    <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ufm3kjXbuh1LYx7TruJEMFRph2h2vQvwcDUlrylqNWBG3C3GzqodHz5GQMlCglXbLEnc/aUqzA97Q+wK06F/MlDS63UGyW4647r1vWvthnDMcxkGFyqHzas7Wlr1LozGU2yan6lYv3zlK90/kMNwAIjRqN5/uOSo/cPSMhFJmqU=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;/RSAKeyValue&gt;</PublicKey>
+  </User>
 </Users>

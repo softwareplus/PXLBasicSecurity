@@ -299,7 +299,7 @@ namespace BasicSecurity.Controllers
             }
             
   
-            ListOvz.Add(u);
+            //ListOvz.Add(u);
 
             return View("Index",ListOvz);
 

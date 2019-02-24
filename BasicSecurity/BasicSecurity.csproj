@@ -190,6 +190,7 @@
   <ItemGroup>
     <Folder Include="App_Data\Downloads\" />
     <Folder Include="App_Data\uploads\" />
+    <Folder Include="images\" />
     <Folder Include="Views\KeyGenerator\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
