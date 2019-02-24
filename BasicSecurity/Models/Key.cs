@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.IO;
+using System.Security.Cryptography;
 
 
 namespace BasicSecurity.Models
@@ -13,6 +14,8 @@ namespace BasicSecurity.Models
         private string content;
         private string location = System.Web.HttpRuntime.CodegenDir;
         private string fileName;
+        private User currentUser;
+        private RSACryptoServiceProvider _rsa;
 
         public enum KeyType
         {
@@ -22,11 +25,21 @@ namespace BasicSecurity.Models
 
         }
 
-
         public Key(User u, KeyType whichType)
         {
             keyType = whichType;
             fileName = keyType.ToString() + "_" + u.Name + ".KEY";
+            currentUser = u;
+            CreateContent();
+        }
+
+        //heb ik overloaden voor de shared RSACryptoSP voor de  private/public keys
+        public Key(User u, KeyType whichType, RSACryptoServiceProvider rsa)
+        {
+            keyType = whichType;
+            fileName = keyType.ToString() + "_" + u.Name + ".KEY";
+            _rsa = rsa;
+            currentUser = u;
             CreateContent();
         }
 
@@ -35,6 +48,7 @@ namespace BasicSecurity.Models
         private void CreateContent()
         {
             //hier nog modellen schrijven voor Public/Private
+            
            
             if (keyType==KeyType.IsAES)
             {
@@ -48,11 +62,11 @@ namespace BasicSecurity.Models
             }
             if (keyType == KeyType.IsPublic)
             {
-                content = "KEY : " + keyType.ToString() + " blablabla";
+                content = _rsa.ToXmlString(true);
             }
             if (keyType == KeyType.IsPrivate)
             {
-                content = "KEY : " + keyType.ToString() + " blablabla";
+                content = _rsa.ToXmlString(false);
             }
 
             File.WriteAllText(location + "\\" + fileName, content);

@@ -46,10 +46,6 @@
 
 
     </div>
-    <div class="col-md-4">
-        AES Sleutel
-        <input type="button" class="btn btn-default" value="Genereer &raquo;" onclick="location.href='@Url.Action("Download", "Home")'" />
-    </div>
 
     <div class="col-md-4">
         <button id=myButtonRefresh class="btn btn-default">Herlaad pagina &raquo;</button>
@@ -58,10 +54,11 @@
 </div>
 
 <hr>
-@using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="row">
-        <h3>Communicatie</h3>
+<div class="row">
+    @using (Html.BeginForm("Encrypt", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <h3>Encrypt/Decrypt</h3>
         <div class="col-md-4">
             <h4>1. Zender/Ontvanger</h4>
             <table>
@@ -87,15 +84,6 @@
                    }))
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        TYPE
-                    </td>
-                    <td></td>
-                    <td>
-                        @Html.DropDownList("typeEncryptie", new List<SelectListItem>() { new SelectListItem { Text = "Encrypt", Value = "1" }, new SelectListItem { Text = "Decrypt", Value = "2" } })
-                    </td>
-                </tr>
             </table>
 
         </div>
@@ -109,59 +97,88 @@
 
                 <p>
                     <input type="file" name="files" class="btn btn-default" multiple />
-                    <input type="submit" value="Encrypt/Decrypt" class="btn btn-default" />
+                    <input type="submit" value="Encrypt" class="btn btn-default" />
                 </p>
             </form>
-            
+
         </div>
 
-    </div>
-}
 
-<hr>
-<div class="row">
-        <h3>Resultaat</h3>
+    }
+
+
+    @using (Html.BeginForm("Decrypt", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
         <div class="col-md-4">
+            <h4>2. Bestanden selecteren</h4>
 
-            <p>
-                <ul>
-                    <li>Boodschap</li>
-                    <li>hash vergelijking</li>
-                </ul>
-            </p>
+            <form action="" method="post" enctype="multipart/form-data">
+
+
+                <p>
+                    <input type="file" name="files" class="btn btn-default" multiple />
+                    <input type="submit" value="Decrypt" class="btn btn-default" />
+                </p>
+            </form>
 
         </div>
+
+
+    }
+
 </div>
 
 <hr>
 <div class="row">
-        <h3>Publieke sleutels</h3>
-        <div class="col-md-4">
-            <table>
-                @{int i = 0; }
+    <h3>Resultaat</h3>
+    <div class="col-md-4">
+
+        <p>
+            <ul>
                 @foreach (var item in Model)
                 {
-
-                    i++;
-                    if (i == 1)
+                    if (!String.IsNullOrEmpty(item.communicationResult))
                     {
-                        <tr>
-                            <td>ID</td>
-                            <td>NAAM</td>
-                            <td>PUBLIC KEY</td>
-                        </tr>
-                    }
-                    if (i >= 2)
-                    {
-                        <tr>
-                            <td widh="5%">@item.Id</td>
-                            <td width="30%">@item.Name</td>
-                            <td width="50%">@item.publicKey</td>
-                        </tr>
+                        <li>@item.communicationResult</li>
+                        <li>@item.communicationMessage</li>
                     }
                 }
-            </table>
-        </div>
+            </ul>
+        </p>
+
+    </div>
+</div>
+
+<hr>
+<div class="row">
+    <h3>Publieke sleutels</h3>
+    <div class="col-md-4">
+        <table>
+            @{int i = 0; }
+            @foreach (var item in Model)
+            {
+
+                i++;
+                if (i == 1)
+                {
+                    <tr>
+                        <td>ID</td>
+                        <td>NAAM</td>
+                        <td>PUBLIC KEY</td>
+                    </tr>
+                }
+                if (i >= 2)
+                {
+                    <tr>
+                        <td widh="5%">@item.Id</td>
+                        <td width="30%">@item.Name</td>
+                        <td width="50%">@item.publicKey</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
 </div>
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Security.Cryptography;
 
 namespace BasicSecurity.Models
 {
@@ -13,8 +14,9 @@ namespace BasicSecurity.Models
 
         public KeyGenerator(User user)
         {
-            publicKey = new Key(user,Key.KeyType.IsPublic);
-            privateKey = new Key(user,Key.KeyType.IsPrivate);
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            publicKey = new Key(user,Key.KeyType.IsPublic,rsa);
+            privateKey = new Key(user,Key.KeyType.IsPrivate, rsa);
             aesKey = new Key(user, Key.KeyType.IsAES);
 
             //dit overloaden

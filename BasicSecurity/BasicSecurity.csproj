@@ -136,13 +136,22 @@
     <Compile Include="Helpers\CommonHelpers.cs" />
     <Compile Include="Helpers\UsersDAL.cs" />
     <Compile Include="Models\About.cs" />
+    <Compile Include="Models\Encryption\EncryptedAes.cs" />
+    <Compile Include="Models\Encryption\HybridEncryption.cs" />
     <Compile Include="Models\Key.cs" />
     <Compile Include="Models\KeyGenerator.cs" />
+    <Compile Include="Models\Keys\AesKey.cs" />
+    <Compile Include="Models\Keys\RsaPrivateKey.cs" />
+    <Compile Include="Models\Keys\RsaPublicKey.cs" />
+    <Compile Include="Models\Result\Result.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Users\UserPair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Database.xml" />
+    <Content Include="App_Data\Database.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -179,6 +188,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\Downloads\" />
     <Folder Include="App_Data\uploads\" />
     <Folder Include="Views\KeyGenerator\" />
     <Folder Include="Views\User\" />

@@ -16,6 +16,10 @@ namespace BasicSecurity.Models
             Name = userName;
         }
 
+        public string communicationResult { get; set; }
+        public string communicationMessage { get; set; }
+
+
         //ff leeg anders moest ik een nieuw model schijven voor de user grid
         public User()
         {

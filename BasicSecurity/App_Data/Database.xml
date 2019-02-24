@@ -3,11 +3,16 @@
   <User>
     <Id>1</Id>
     <Name>Alice</Name>
-    <PublicKey>KEY : IsPublic blablabla</PublicKey>
+    <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;3LicM3gpdtStbJIV9fnPHiy7k0pBeVugKRmj6uM4X8kh4VL0/eSXBYgGsNugygWJ7VcrW/l7EaStXUKlV0ATgbXYHrEKk0c3q25ug5plpPPjR9rkidFnzOIrOChPPVtx+6y1hIr6W6KS2qs9S97CCZVjoxbRejK0GxDgKCzLbQk=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;4R30WrwC5hc3gLH4VGgG1IZWeRyGvpFnzNInbUq/cY3EclZKAJpZeaKyqJAGevrFs1pIEkLu1NXFfK8ADwwruw==&lt;/P&gt;&lt;Q&gt;+wBGEo4JHWXhD4D/uX7+0h5mzr5o2BoLaBE4xB+3lTBmqovWT0nNo+cMFwx8QNu2Xx7sSLEa919zz9qpKEnkCw==&lt;/Q&gt;&lt;DP&gt;KqYCJS55Xh4H5dnRsiwDH0BUIZ3F6VSi1ar6zTncCydQkFjIrFSRnvmz3ztp/uKDkfcIsGz90lStlXGSEUe9AQ==&lt;/DP&gt;&lt;DQ&gt;oft9PUA4laZH5i+D2PwiCwvfoRC0rLGyJsjmb3tgiIEh4HI6LhUdBud2n/FIxrqEKULVjdvt4TLSlJMyk3OMHQ==&lt;/DQ&gt;&lt;InverseQ&gt;BVp6wwpdvDrPsRLeuV2CaIHMQgvKR9Z28nESwnCISFgRF+1ddEl4HZO0KTJ3/sj1G8GMuhIClYkxIChvgzylaQ==&lt;/InverseQ&gt;&lt;D&gt;VnoqEOxaaolnLSuLWSU35d2m3E1ym6aveIroMyY1NyopkQucm0ENfohN/sr+E0jaQlgtz8pOUppPpkNvXmDngub+MxXsf9KkbdiOQd2Y2rc78rUrRPcQRp5ikJXWCnKzRNqk+xc/WvJooDzQcR2yZm5NhXcrildODQyMyw9GnXU=&lt;/D&gt;&lt;/RSAKeyValue&gt;</PublicKey>
   </User>
   <User>
     <Id>2</Id>
     <Name>Bob</Name>
-    <PublicKey>KEY : IsPublic blablabla</PublicKey>
+    <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;3Y/1AdfpL0gLIWM7+KKUzhNky1B/S/OyL2e02Xm8N7Q/5bUnW9Lfo/DL2THTp13cDmlkxRsXgLMbK7sLC9ZTx2SC6JZI4e+XDoHVSEYX0cVUSMHTzAnr+cVC/gaCt8fQT6P5uR7PQZ49FWhHKvo5lL+nfRVlsX2xHEL/9dyC9IE=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;9z/Ukep5B/cf0DILS4WN+pB3wLmRfMXZMEphxodu8KZHpHo2h8sKzsT+9WJYTPcd49lrIF9BPTRA/WUe+c8i/w==&lt;/P&gt;&lt;Q&gt;5WdknTtOLX9xP30kRW3XDPwPMwwruQvtejvsd8aykNhvIYKZtNe02XzEIJhH4d7aDdX/BLEqP1TppbchfHdofw==&lt;/Q&gt;&lt;DP&gt;Jv+BZtaF6pS3Bt6t22agY1IgIVzjrruCK1TAIVFBVWHU0QOZ0EddWAnIcSnm5ZTguQyVEhEUODQiwBUQErTyPw==&lt;/DP&gt;&lt;DQ&gt;d30bUyqI1foDquYr9l34HbNM13IHdCNaVsjPqrO8XuXdPL8iAKg6cu4h2jh3eJbzTTGh23fMYaCA8ugocQRhUQ==&lt;/DQ&gt;&lt;InverseQ&gt;3gC/oSr6vv7AIRmQQq80eBQhvKQ40w47Qm+WaQh6dkbJtbP8KlpTgeR3YPfl4+Hg0UXtpADrfxkZ0Roo3i4I3A==&lt;/InverseQ&gt;&lt;D&gt;suJUzY02Xw9KtUU6mU8i15M+8QxoCrmSJsYTdPbdqRfl8x+kzHVgTSvQWebp3Rph3lznmGB8RFPXXyJgE8mSz0wWafLam+yk6MOt0IsIAqfjTS2BmiVTlelDaKU7GA1kOgkY9ioOB0vEAz4hQHpgTazaWugh4ShzyJjwL3iA08U=&lt;/D&gt;&lt;/RSAKeyValue&gt;</PublicKey>
+  </User>
+  <User>
+    <Id>3</Id>
+    <Name>Rocco</Name>
+    <PublicKey>&lt;RSAKeyValue&gt;&lt;Modulus&gt;ux8a69AR1UYs9ciqC1eLHQyv2Ey4gTt1zyxSlajY0iHYLFUTVdW913w5YzqUY1IA24pfv97yb1txJ7881XqR9q6amCxEfFr3OTHY3/Hye3gDceqE6bDOXvJ0HkB830bbe/uet64S+lsm02gLJLh4/iesxGadyNhwUsvKZ4vLLLk=&lt;/Modulus&gt;&lt;Exponent&gt;AQAB&lt;/Exponent&gt;&lt;P&gt;yF1NL6c8X1sCZ8w6kVuWkSGTRtVB/9sbDEzX0YCcw1AdTxPSATMtcfp0wLTmk+mGM9EEOnXOguk8gxQ6Aj0O1w==&lt;/P&gt;&lt;Q&gt;7xRxKk27XKp6Zx6457LiGomcTQBGGelEQylA3MF79V2PmWXwX9MD2pTRvmUetF1vK3hhcuDMpcQkNmz+M1f+7w==&lt;/Q&gt;&lt;DP&gt;axAH7X20MdPEnkgvx3okI1rIgqHziU6/zjvFWqoZmffWIWoa3g9FqlDFUC+ZwdGXp1p5ou9OMP+GGRiWwplzsw==&lt;/DP&gt;&lt;DQ&gt;4RjWE4ZsSasY485BOaVqzKGTz8vaNLsz0igdMbvaAgK9GSipUQ9UKZDEigabCiaObNdCqO6Ov+QUVEn6bE0FcQ==&lt;/DQ&gt;&lt;InverseQ&gt;Ag5RwOgjLi+L5ieaGcsKz/Heqxqi8GG0u6u5DMGfi2pyuqqOURG0A88/QlNpMrgaoy9yOlRD0cOsCD9Cin2l1A==&lt;/InverseQ&gt;&lt;D&gt;Fvy8PunhtvSXA16yXRBVG616ULUkGWQnldrZDl+euznDJ7cP2ASY/Mba+fCxV/4z8sRt/NEzsTBnlz1sCMG0+oX+c7vdXupzwfPZTKqRQDLASO4DP5bheJEaaa7MH6ZJxF2StbvQbUaooXvgWz9aNi//3RwfvWIRLdHHQdRyc50=&lt;/D&gt;&lt;/RSAKeyValue&gt;</PublicKey>
   </User>
 </Users>
